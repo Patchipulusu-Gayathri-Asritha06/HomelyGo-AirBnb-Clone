@@ -59,13 +59,6 @@ module.exports.index = async (req, res) => {
     }
 
     let allListings = await Listing.find(filter).sort(sortOption);
-    if (allListings.length == 0) {
-        req.flash("error", "No Listings found in this filter");
-        return res.render("listings/index.ejs", {
-            allListings
-        });
-    }
-
     // console.log(allListings);
     res.render("listings/index.ejs", {
         allListings

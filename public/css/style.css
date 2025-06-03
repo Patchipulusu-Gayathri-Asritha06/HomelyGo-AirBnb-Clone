@@ -18,8 +18,9 @@ body {
 
 /* Navbar */
 
+
 .navbar {
-    background-color: #fff !important;
+    background-color: rgba(240, 240, 240, 0.98) !important;
     height: 5rem;
     top: 0;
 }
@@ -41,7 +42,7 @@ body {
 }
 
 .nav-link:hover{
-    border: 1px solid #fe424d;
+    border: 2px solid #fe424d;
 }
 
 /* Footer */

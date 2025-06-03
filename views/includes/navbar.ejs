@@ -1,7 +1,30 @@
 <style>
     .navbar-collapse {
-        background-color: #fff !important;
+        background-color: rgba(240, 240, 240, 0.98) !important;
     }
+    @media (max-width: 991.98px) { /* Target medium and below (bootstrap breakpoint) */
+        .navbar-collapse {
+            position: absolute;
+            top: 100%; /* below navbar */
+            left: 0;
+            right: 0;
+            width: 100vw; /* full viewport width */
+            background-color: rgba(240, 240, 240, 0.98)!important;
+            z-index: 999; /* appear above other content */
+            padding: 1rem;
+        }
+
+        .navbar-nav {
+            width: 100%;
+        }
+
+        .navbar-nav a {
+            width: 100%;
+            /* text-align: center; */
+            border: 1px solid #fe424d;
+        }
+    }
+
 
     .search-btn {
         background-color: #fe424d;
@@ -21,14 +44,16 @@
     }
 
     .search-inp {
+        border: 1px solid #fe424d;
         border-radius: 25px;
         padding: 0.5rem 2rem;
     }
+
 </style>
 
 <nav class="navbar navbar-expand-lg bg-body-teritary border-bottom fixed-top">
     <div class="container-fluid ms-lg-5">
-        <a class="navbar-brand mt-3" href="/listings">
+        <a class="navbar-brand mt-3" href="/">
             <i class="fa-solid fa-compass"></i>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -39,7 +64,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <!-- Explore Destinations -->
             <div class="navbar-nav">
-                <a class="nav-link mt-3 mb-2 px-2" href="/listings">
+                <a class="nav-link mt-3 mb-2 px-3" href="/listings">
                     <!-- <span class="navbar-brand-text fw-bold">Explore Destinations</span> -->
                     <span class="navbar-brand-text fw-bold">Explore Destinations</span></a>
                 </a>

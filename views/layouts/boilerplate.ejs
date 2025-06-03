@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/images/location2.png">
+    <link rel="icon" type="image/x-icon" href="/images/marker.png">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/rating.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +26,22 @@
         <%- include("../includes/flash.ejs") %>
         <%- body %>
     </div>
+    <% if (!hideFooter) { %>
     <%- include("../includes/footer.ejs") %>
+    <% } %>
+    <script>
+        window.addEventListener('load', () => {
+            // Check if page was reloaded/refreshed
+            if (performance.getEntriesByType("navigation")[0].type === "reload") {
+            // Remove query string without reloading page
+            if (window.location.search.length > 0) {
+                const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.replaceState({}, document.title, cleanUrl);
+            }
+            }
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
     </script>

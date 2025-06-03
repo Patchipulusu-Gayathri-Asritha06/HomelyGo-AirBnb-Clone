@@ -90,25 +90,16 @@ app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
+    res.locals.hideFooter= false;
     next();
 });
-
-// app.get("/demoUser", async (req, res) => {
-//     let fakeUser = new User({
-//         email: "student@gmail.com",
-//         username: "demo-student"
-//     });
-
-//     const registeredUser = await User.register(fakeUser, "secretpassword");
-//     res.send(registeredUser);
-// });
 
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
 app.use("/", users);
 
 app.get("/", (req, res) => {
-    res.send("Hello, Welcome to HomelyGo");
+    res.render("listings/title.ejs", {hideFooter: true});
 });
 
 app.use((req, res, next) => {

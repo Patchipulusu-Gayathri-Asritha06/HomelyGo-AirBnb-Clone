@@ -63,11 +63,10 @@
         text-align: center;
         margin-right: 2rem;
         margin-top: 2rem;
-        opacity: 0.7;
+        /* opacity: 0.7; */
     }
 
     .filter:hover {
-        opacity: 1;
         color: #fe424d;
     }
 
@@ -75,6 +74,12 @@
         /* removes all default browser styles */
         all: unset;
         cursor: pointer;
+    }
+
+    .category-btn.active-category {
+        color: #fe424d;
+        font-size:large;
+        opacity: 1;
     }
 
     .scroll-btn {
@@ -148,7 +153,8 @@
     }
 
     .price-filter .dropdown-menu button {
-        padding: 0.5rem;
+        padding: 0.
+        5rem;
     }
 </style>
 
@@ -318,7 +324,7 @@
                 <p class="card-text mt-2">
                     <b><%= listing.title %></b><br />
                     &#8377; <%= listing.price.toLocaleString("en-IN") %> /night
-                    <i class="tax-info">&nbsp; + 18 % GST</i>
+                    <i class="tax-info" style="color:#fe424d">&nbsp; + 18 % GST</i>
                     <br />
                 </p>
             </div>
@@ -373,4 +379,20 @@
     document.addEventListener("click", () => {
         priceDropdown.style.display = "none";
     });
+
+    // Get the current category from the query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const activeCategory = urlParams.get("category");
+
+    if (activeCategory) {
+        const buttons = document.querySelectorAll(".category-btn");
+
+        buttons.forEach((btn) => {
+            const input = btn.closest("form").querySelector("input[name='category']");
+            if (input && input.value === activeCategory) {
+                btn.classList.add("active-category");
+            }
+        });
+    }
+
 </script>
