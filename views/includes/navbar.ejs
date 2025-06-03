@@ -1,0 +1,73 @@
+<style>
+    .navbar-collapse {
+        background-color: #fff !important;
+    }
+
+    .search-btn {
+        background-color: #fe424d;
+        color: #fff;
+        border-radius: 25px;
+        padding: 0 1rem;
+    }
+
+    .search-btn:hover {
+        background-color: #fe424d;
+        color: #fff;
+    }
+
+    .search-btn i {
+        display: inline;
+        margin-right: 0.5rem;
+    }
+
+    .search-inp {
+        border-radius: 25px;
+        padding: 0.5rem 2rem;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg bg-body-teritary border-bottom fixed-top">
+    <div class="container-fluid ms-lg-5">
+        <a class="navbar-brand mt-3" href="/listings">
+            <i class="fa-solid fa-compass"></i>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <!-- Explore Destinations -->
+            <div class="navbar-nav">
+                <a class="nav-link mt-3 mb-2 px-2" href="/listings">
+                    <!-- <span class="navbar-brand-text fw-bold">Explore Destinations</span> -->
+                    <span class="navbar-brand-text fw-bold">Explore Destinations</span></a>
+                </a>
+            </div>
+
+            <!-- Search Form -->
+            <div class="navbar-nav ms-auto">
+                <form class="d-flex" role="search" action="/listings" method="GET">
+                    <input class="form-control me-2 search-inp" type="search" name="search" placeholder="Search Destinations"
+                        aria-label="Search" />
+                    <button class="btn search-btn search" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>Search
+                    </button>
+                </form>
+            </div>
+
+            <!-- Auth / Host Links -->
+            <div class="navbar-nav rightBtns ms-auto me-lg-5">
+                <b><a class="nav-link px-3" href="/listings/new">Become a Host</a></b>
+                <% if(!currUser) { %>
+                <b><a class="nav-link px-3" href="/signup">Sign Up</a></b>
+                <b><a class="nav-link px-3" href="/login">Login</a></b>
+                <% } %>
+                <% if(currUser) { %>
+                <b><a class="nav-link px-3" href="/logout">Log out</a></b>
+                <% } %>
+            </div>
+        </div>
+
+    </div>
+</nav>

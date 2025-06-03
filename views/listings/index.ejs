@@ -1,0 +1,376 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+    .menu-bar {
+        display: grid;
+        grid-template-rows: repeat(1, 1fr);
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .filters-wrapper {
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+
+    @media (max-width: 1008px) {
+        .menu-bar {
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 2rem;
+        }
+
+        .filters-wrapper {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+
+        .tax-toggle {
+            font-size: 0.8rem;
+            height: auto;
+            /* Let it grow vertically if needed */
+        }
+    }
+
+    select {
+        appearance: unset;
+        -webkit-appearance: none;
+    }
+
+    .filters-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #filters {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        width: 700px;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    .filter {
+        text-align: center;
+        margin-right: 2rem;
+        margin-top: 2rem;
+        opacity: 0.7;
+    }
+
+    .filter:hover {
+        opacity: 1;
+        color: #fe424d;
+    }
+
+    .category-btn {
+        /* removes all default browser styles */
+        all: unset;
+        cursor: pointer;
+    }
+
+    .scroll-btn {
+        position: absolute;
+        background-color: #fff;
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        border: none;
+        border-radius: 50%;
+    }
+
+    #scroll-left,
+    #scroll-right {
+        width: 2.3rem;
+    }
+
+    .left-btn {
+        left: 0;
+    }
+
+    .right-btn {
+        right: 0;
+    }
+
+    .tax-toggle,
+    .listing-filter {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 1rem;
+        height: 3rem;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+        margin-right: 0.5rem;
+        text-align: center;
+    }
+
+    .tax-toggle {
+        max-width: 100%;
+        /* Prevent it from stretching too far */
+        overflow: hidden;
+        /* Hide overflowing content */
+        white-space: normal;
+        /* Allow wrapping */
+        word-wrap: break-word;
+        /* Force wrap long words */
+    }
+
+    .tax-info {
+        display: none;
+    }
+
+    .dropdown button {
+        border: none;
+        background-color: transparent;
+    }
+
+    .dropdown-menu {
+        display: none;
+    }
+
+    .price-filter {
+        position: relative;
+        display: inline-block;
+    }
+
+    .price-filter .dropdown-menu form {
+        margin-bottom: 0.5rem;
+    }
+
+    .price-filter .dropdown-menu button {
+        padding: 0.5rem;
+    }
+</style>
+
+<div class="menu-bar">
+    <div class="filters-wrapper">
+        <button id="scroll-left" class="scroll-btn left-btn">
+            <i class="fa-solid fa-caret-left"></i>
+        </button>
+        <div id="filters">
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Trending">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-solid fa-fire"></i>
+                        <p>Trending</p>
+                    </button>
+                </form>
+            </div>
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Rooms">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-solid fa-bed"></i>
+                        <p>Rooms</p>
+                    </button>
+                </form>
+            </div>
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Iconic Cities">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-solid fa-mountain-city"></i>
+                        <p>Cities</p>
+                    </button>
+                </form>
+            </div>
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Mountains">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-solid fa-mountain"></i>
+                        <p>Mountains</p>
+                    </button>
+                </form>
+            </div>
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Castles">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-brands fa-fort-awesome"></i>
+                        <p>Castles</p>
+                    </button>
+                </form>
+            </div>
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Pools">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-solid fa-person-swimming"></i>
+                        <p>Pools</p>
+                    </button>
+                </form>
+            </div>
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Farms">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-solid fa-tractor"></i>
+                        <p>Farms</p>
+                    </button>
+                </form>
+            </div>
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Arctic">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-solid fa-snowflake"></i>
+                        <p>Arctic</p>
+                    </button>
+                </form>
+            </div>
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Apartments">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-solid fa-building"></i>
+                        <p>Apartments</p>
+                    </button>
+                </form>
+            </div>
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Boats">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-solid fa-ship"></i>
+                        <p>Boats</p>
+                    </button>
+                </form>
+            </div>
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Beach">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-solid fa-umbrella-beach"></i>
+                        <p>Beach</p>
+                    </button>
+                </form>
+            </div>
+            <div class="filter">
+                <form method="GET" action="/listings">
+                    <input type="hidden" name="category" value="Cabins">
+                    <button type="submit" class="category-btn">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <p>Cabins</p>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <button id="scroll-right" class="scroll-btn right-btn">
+            <i class="fa-solid fa-caret-right"></i>
+        </button>
+    </div>
+
+    <div class="listing-filter">
+        <div class="filter-bar">
+            <div class="dropdown price-filter">
+                <button class="dropdown-toggle" id="priceFilterBtn">
+                    <i class="fa-solid fa-sliders"></i>
+                    Filters
+                </button>
+                <div class="dropdown-menu" id="priceDropdown">
+                    <form action="/listings" method="GET">
+                        <input type="hidden" name="sort" value="asc">
+                        <button type="submit">Price : Low to High</button>
+                    </form>
+                    <form action="/listings" method="GET">
+                        <input type="hidden" name="sort" value="desc">
+                        <button type="submit">Price : High to Low</button>
+                    </form>
+                    <form action="/listings" method="GET">
+                        <input type="hidden" name="priceRange" value="0-3000">
+                        <button type="submit">Under ₹3,000</button>
+                    </form>
+                    <form action="/listings" method="GET">
+                        <input type="hidden" name="priceRange" value="3000-9999">
+                        <button type="submit">Above ₹3,000</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tax-toggle">
+        <div class="form-check-reverse form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked">
+            <label class="form-check-label" for="switchCheckChecked">Total after Taxes</label>
+        </div>
+    </div>
+</div>
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% for(let listing of allListings){ %>
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+        <div class="card col listing-card mb-4">
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="<%= listing.title %>" style="height: 20rem;">
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+                <p class="card-text mt-2">
+                    <b><%= listing.title %></b><br />
+                    &#8377; <%= listing.price.toLocaleString("en-IN") %> /night
+                    <i class="tax-info">&nbsp; + 18 % GST</i>
+                    <br />
+                </p>
+            </div>
+        </div>
+    </a>
+    <% } %>
+</div>
+
+<script>
+    let taxSwitch = document.getElementById("switchCheckChecked");
+    taxSwitch.addEventListener("click", () => {
+        let taxInfo = document.getElementsByClassName("tax-info");
+        for (let info of taxInfo) {
+            if (info.style.display != "inline") {
+                info.style.display = "inline";
+            } else {
+                info.style.display = "none";
+            }
+        }
+    });
+
+    let filtersBox = document.getElementById("filters");
+    let scrollLeftBtn = document.getElementById("scroll-left");
+    let scrollRightBtn = document.getElementById("scroll-right");
+
+    scrollLeftBtn.addEventListener("click", () => {
+        filtersBox.scrollBy({
+            left: -200,
+            behavior: "smooth"
+        });
+    });
+
+    scrollRightBtn.addEventListener("click", () => {
+        filtersBox.scrollBy({
+            left: 200,
+            behavior: "smooth"
+        });
+    });
+
+    const priceFilterBtn = document.getElementById("priceFilterBtn");
+    const priceDropdown = document.getElementById("priceDropdown");
+
+    priceFilterBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (priceDropdown.style.display === "block") {
+            priceDropdown.style.display = "none";
+        } else {
+            priceDropdown.style.display = "block";
+        }
+    });
+
+    document.addEventListener("click", () => {
+        priceDropdown.style.display = "none";
+    });
+</script>
