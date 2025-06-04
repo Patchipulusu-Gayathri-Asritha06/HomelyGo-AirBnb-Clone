@@ -151,6 +151,11 @@ module.exports.updateListing = async (req, res, next) => {
         new: true
     });
 
+    if(!updatedListing){
+        req.flash("error", "Listing you want to update does not exist");
+        return res.redirect("/listings");
+    }
+
     if (req.file) {
         const url = req.file.path;
         const filename = req.file.filename;

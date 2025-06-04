@@ -23,9 +23,21 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image Link</label>
-                <input type="file" name="listing[image]" id="image" class="form-control" value="<%= listing.image %>"
-                    required>
-                <div class="invalid-feedback">Please enter a valid Image URL</div>
+                <input type="file" name="listing[image]" id="image" class="form-control" value="<%= listing.image %>">
+                <div class="form-text text-muted">
+                    Leave this empty to keep the current image.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                    <select class="form-select" name="listing[category]" id="category" required>
+                    <% const categories = ["Trending", "Rooms", "Iconic Cities", "Mountains", "Castles", "Pools", "Farms", "Arctic", "Apartments", "Boats", "Beach", "Cabins"]; %>
+                    <% categories.forEach(cat => { %>
+                    <option value="<%= cat %>" <%= listing.category === cat ? "selected" : "" %>>
+                        <%= cat %>
+                    </option>
+                    <% }); %>
+                </select>
             </div>
             <div class="row">
                 <div class="mb-3 col-md-4">

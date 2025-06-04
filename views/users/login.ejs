@@ -1,8 +1,14 @@
 <% layout("layouts/boilerplate.ejs") %>
-
+<style>
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+</style>
 <div class="row">
-    <div class="col-8 offset-2">
-        <h2 class="mb-3 mt-3">Login Form</h2>
+    <div class="col-lg-8 col-md-10 offset-lg-2 offset-md-1 container">
+        <h1 class="mb-3 mt-3 text-center">Login to Continue</h1>
         <form method="POST" action="/login" class="needs-validation" novalidate>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
@@ -10,12 +16,19 @@
                 <div class="valid-feedback">Looks good!</div>
                 <div class="invalid-feedback">Please enter a username</div>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 position-relative">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-                <div class="invalid-feedback">Please enter your password</div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" class="form-control" required>
+                    <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
+                        <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                    </span>
+                </div>
+                <div class="invalid-feedback">Please specify some password</div>
             </div>
-            <button class="btn btn-dark editBtn">Login</button>
+            <div class="text-center">
+                <button class="btn btn-dark editBtn">Login</button>
+            </div>
         </form>
     </div>
 </div>

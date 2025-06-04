@@ -91,6 +91,7 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
     res.locals.hideFooter= false;
+    console.log(req.user);
     next();
 });
 

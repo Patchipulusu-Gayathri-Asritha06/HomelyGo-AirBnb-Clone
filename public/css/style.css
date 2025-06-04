@@ -129,10 +129,6 @@ body {
 
 /* Show Page */
 
-.btns{
-    display: flex;
-}
-
 .show-card {
     padding-left: 0;
     padding-right: 0;
@@ -151,3 +147,18 @@ body {
 }
 
 
+/* Password Eye Toggle */
+
+#togglePassword {
+    background: transparent;
+    border-left: none;
+}
+#eyeIcon {
+    color: #333;
+}
+
+.container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
